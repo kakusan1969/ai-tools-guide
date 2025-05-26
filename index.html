@@ -2,15 +2,15 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 工具優先級與變現指南</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 工具優先級與變現指南 × 完整版</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .accordion-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out, padding-top 0.3s, padding-bottom 0.3s;
+      transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
     }
     .accordion-button.active .arrow-down {
       transform: rotate(180deg);
@@ -23,67 +23,113 @@
 <body class="bg-gray-100 text-gray-800 min-h-screen p-4 sm:p-8 flex justify-center items-start">
   <div class="w-full max-w-3xl bg-white shadow-xl rounded-xl p-6 sm:p-8">
     <header class="mb-8 text-center">
-      <h1 class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
-        AI 工具優先級與變現指南
-      </h1>
-      <p class="text-gray-600 mt-2">點擊下方列表查看各工具的詳細信息。</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">AI 工具優先級與變現指南</h1>
+      <p class="text-gray-600 mt-2">點擊下方列表查看各工具的詳細信息與變現方式。</p>
     </header>
 
-    <div class="space-y-4">
-      <div class="accordion-item rounded-lg shadow-md overflow-hidden">
-        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-indigo-500 text-white hover:bg-indigo-600 focus:outline-none">
-          <span class="text-lg font-semibold">1. ChatGPT（文字生成 AI）</span>
-          <svg class="arrow-down w-6 h-6 text-indigo-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="accordion-content bg-indigo-50">
-          <div class="p-5 space-y-3 text-indigo-800">
-            <p><strong>優先級原因：</strong>用途多元、變現路徑廣、入門簡單。</p>
-            <ul class="list-disc list-inside">
-              <li><strong>內容寫作：</strong>生成文章、SEO文、廣告文案。</li>
-              <li><strong>翻譯轉錄：</strong>文件翻譯、語音轉文字。</li>
-              <li><strong>劇本與小說：</strong>創作童書、劇本、網文。</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item rounded-lg shadow-md overflow-hidden">
-        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-rose-500 text-white hover:bg-rose-600 focus:outline-none">
-          <span class="text-lg font-semibold">2. Midjourney / SD（AI 繪圖）</span>
-          <svg class="arrow-down w-6 h-6 text-rose-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <div class="accordion-content bg-rose-50">
-          <div class="p-5 space-y-3 text-rose-800">
-            <p><strong>優先級原因：</strong>創作無門檻、商業應用廣。</p>
-            <ul class="list-disc list-inside">
-              <li><strong>賣圖賺錢：</strong>圖像商品、NFT 藝術。</li>
-              <li><strong>設計接案：</strong>社群貼圖、書籍插畫。</li>
-              <li><strong>數位產品：</strong>桌布、貼紙、模板。</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="accordionContainer" class="space-y-4"></div>
 
     <footer class="text-center text-xs text-gray-400 mt-12">
-      本頁由郭老師 × 軍師協作製作。部署於 GitHub Pages。
+      本頁由郭老師 × 軍師協作製作，部署於 GitHub Pages。
     </footer>
   </div>
 
   <script>
+    const data = [
+      {
+        title: "ChatGPT（文字生成 AI）",
+        reason: "用途多元、變現管道廣，人人可入門。",
+        items: [
+          "內容寫作：部落格、SEO文、廣告文案。",
+          "翻譯轉錄：協助文件翻譯、語音轉文字。",
+          "劇本創作：小說、漫畫、動畫本。",
+          "顧問與教學：生成簡報、教材、顧問報告。",
+          "AI小幫手服務：為學生、小商家代寫報告。"
+        ],
+        color: "indigo"
+      },
+      {
+        title: "Midjourney / SD（AI 繪圖）",
+        reason: "創作無門檻、圖像商品市場巨大。",
+        items: [
+          "銷售藝術圖：貼圖、NFT、T-shirt設計。",
+          "接案設計：Logo、海報、插畫。",
+          "製作數位產品：桌布、模板、線上資源。",
+          "內容配圖：簡報、部落格插圖。"
+        ],
+        color: "rose"
+      },
+      {
+        title: "Canva（AI設計整合平台）",
+        reason: "適合設計初學者，快速產出商品與社群內容。",
+        items: [
+          "電子書與教材製作：排版搭配 AI 內容生成。",
+          "社群貼文與 Reels 設計：快速設計風格一致內容。",
+          "商業簡報：結合 GPT + Canva 自動產出客製內容。",
+          "線上賣場圖組：蝦皮、Pinkoi 所需主圖與版型。"
+        ],
+        color: "emerald"
+      },
+      {
+        title: "ElevenLabs / Speechify（AI 語音）",
+        reason: "不露臉創作者福音，音頻與配音需求大增。",
+        items: [
+          "YouTube 配音：製作無臉影片旁白。",
+          "Podcast 與有聲書：快速製作音頻作品。",
+          "語音克隆與角色配音：創造品牌專屬聲音。",
+          "多語言朗讀：支援國際觀眾。"
+        ],
+        color: "amber"
+      },
+      {
+        title: "Pictory / Synthesia / RunwayML（AI 影片工具）",
+        reason: "影片為主流媒介，短影音與教學影片需求高漲。",
+        items: [
+          "AI Shorts 頻道經營：TikTok、YouTube Shorts。",
+          "AI 數位人影片：製作虛擬主播與品牌影片。",
+          "腳本轉影片：從 ChatGPT 腳本快速生成。",
+          "影片剪輯助手：Runway 快速套模板剪片。"
+        ],
+        color: "sky"
+      }
+    ];
+
+    const container = document.getElementById('accordionContainer');
+
+    data.forEach((tool, i) => {
+      const outer = document.createElement('div');
+      outer.className = `accordion-item rounded-lg shadow-md overflow-hidden`;
+
+      const button = document.createElement('button');
+      button.className = `accordion-button w-full flex justify-between items-center text-left p-5 bg-${tool.color}-500 text-white hover:bg-${tool.color}-600 focus:outline-none`;
+      button.innerHTML = `
+        <span class="text-lg font-semibold">${i + 1}. ${tool.title}</span>
+        <svg class="arrow-down w-6 h-6 text-${tool.color}-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      `;
+
+      const content = document.createElement('div');
+      content.className = `accordion-content bg-${tool.color}-50`;
+      content.innerHTML = `
+        <div class="p-5 space-y-3 text-${tool.color}-800">
+          <p><strong>優先級原因：</strong>${tool.reason}</p>
+          <ul class="list-disc list-inside">${tool.items.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+      `;
+
+      outer.appendChild(button);
+      outer.appendChild(content);
+      container.appendChild(outer);
+    });
+
     document.querySelectorAll('.accordion-button').forEach(button => {
       button.addEventListener('click', () => {
         const content = button.nextElementSibling;
         const isActive = button.classList.contains('active');
 
-        document.querySelectorAll('.accordion-button').forEach(other => {
-          if (other !== button && other.classList.contains('active')) {
-            other.classList.remove('active');
-            const c = other.nextElementSibling;
+        document.querySelectorAll('.accordion-button').forEach(b => {
+          if (b !== button && b.classList.contains('active')) {
+            b.classList.remove('active');
+            const c = b.nextElementSibling;
             c.style.maxHeight = '0';
             c.style.paddingTop = '0';
             c.style.paddingBottom = '0';

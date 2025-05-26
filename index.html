@@ -2,18 +2,106 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 工具優先級可視化 (彩色主題)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 工具優先級與變現指南</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding-top 0.3s, padding-bottom 0.3s;
+    }
+    .accordion-button.active .arrow-down {
+      transform: rotate(180deg);
+    }
+    .arrow-down {
+      transition: transform 0.3s ease-out;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen p-4 sm:p-8 flex justify-center items-start">
-    <div class="w-full max-w-3xl bg-white shadow-xl rounded-xl p-6 sm:p-8">
-        <header class="mb-8 text-center">
-            <h1 class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">AI 工具優先級與變現指南</h1>
-            <p class="text-gray-600 mt-2">此頁面由軍師製作，展示 AI 工具的變現策略與應用場景。</p>
-        </header>
-        <p class="text-center text-lg text-gray-700">請透過 GitHub Pages 開啟此頁，即可完整互動與摺疊視覺效果。</p>
+  <div class="w-full max-w-3xl bg-white shadow-xl rounded-xl p-6 sm:p-8">
+    <header class="mb-8 text-center">
+      <h1 class="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500">
+        AI 工具優先級與變現指南
+      </h1>
+      <p class="text-gray-600 mt-2">點擊下方列表查看各工具的詳細信息。</p>
+    </header>
+
+    <div class="space-y-4">
+      <div class="accordion-item rounded-lg shadow-md overflow-hidden">
+        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-indigo-500 text-white hover:bg-indigo-600 focus:outline-none">
+          <span class="text-lg font-semibold">1. ChatGPT（文字生成 AI）</span>
+          <svg class="arrow-down w-6 h-6 text-indigo-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="accordion-content bg-indigo-50">
+          <div class="p-5 space-y-3 text-indigo-800">
+            <p><strong>優先級原因：</strong>用途多元、變現路徑廣、入門簡單。</p>
+            <ul class="list-disc list-inside">
+              <li><strong>內容寫作：</strong>生成文章、SEO文、廣告文案。</li>
+              <li><strong>翻譯轉錄：</strong>文件翻譯、語音轉文字。</li>
+              <li><strong>劇本與小說：</strong>創作童書、劇本、網文。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item rounded-lg shadow-md overflow-hidden">
+        <button class="accordion-button w-full flex justify-between items-center text-left p-5 bg-rose-500 text-white hover:bg-rose-600 focus:outline-none">
+          <span class="text-lg font-semibold">2. Midjourney / SD（AI 繪圖）</span>
+          <svg class="arrow-down w-6 h-6 text-rose-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="accordion-content bg-rose-50">
+          <div class="p-5 space-y-3 text-rose-800">
+            <p><strong>優先級原因：</strong>創作無門檻、商業應用廣。</p>
+            <ul class="list-disc list-inside">
+              <li><strong>賣圖賺錢：</strong>圖像商品、NFT 藝術。</li>
+              <li><strong>設計接案：</strong>社群貼圖、書籍插畫。</li>
+              <li><strong>數位產品：</strong>桌布、貼紙、模板。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <footer class="text-center text-xs text-gray-400 mt-12">
+      本頁由郭老師 × 軍師協作製作。部署於 GitHub Pages。
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.accordion-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const isActive = button.classList.contains('active');
+
+        document.querySelectorAll('.accordion-button').forEach(other => {
+          if (other !== button && other.classList.contains('active')) {
+            other.classList.remove('active');
+            const c = other.nextElementSibling;
+            c.style.maxHeight = '0';
+            c.style.paddingTop = '0';
+            c.style.paddingBottom = '0';
+          }
+        });
+
+        button.classList.toggle('active');
+        if (!isActive) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.paddingTop = '1.25rem';
+          content.style.paddingBottom = '1.25rem';
+        } else {
+          content.style.maxHeight = '0';
+          content.style.paddingTop = '0';
+          content.style.paddingBottom = '0';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
